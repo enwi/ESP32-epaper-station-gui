@@ -47,9 +47,6 @@ jobs:
         run: |
           flutter config --enable-linux-desktop
           flutter build linux
-          ls build/linux
-          ls build/linux/release
-          ls build/linux/debug
       
       # Upload generated binaries
       - name: Upload android binaries
@@ -62,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-linux
-          path: build/linux/Release/bundle/
+          path: build/linux/x64/release/bundle/
           
   build-windows:
     name: Build Windows
