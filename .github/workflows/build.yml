@@ -49,15 +49,17 @@ jobs:
           flutter build linux
       
       # Upload generated binaries
-      - uses: actions/upload-artifact@v3
+      - name: Upload android binaries
+        uses: actions/upload-artifact@v3
         with:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
       
-      - uses: actions/upload-artifact@v3
+      - name: Upload linux binaries
+        uses: actions/upload-artifact@v3
         with:
           name: release-linux
-          path: build/linux/release/bundle/
+          path: build/linux/Release/bundle/
           
   build-windows:
     name: Build Windows
@@ -77,12 +79,14 @@ jobs:
       - run: flutter pub get
       
       # Build windows
-      - run: |
+      - name: Build Windows
+        run: |
           flutter config --enable-windows-desktop
           flutter build windows
       
       # Upload generated binaries
-      - uses: actions/upload-artifact@v3
+      - name: Upload windows binaries
+        uses: actions/upload-artifact@v3
         with:
           name: release-windows
           path: build/windows/runner/release/
