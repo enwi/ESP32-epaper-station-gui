@@ -1,0 +1,64 @@
+name: build
+
+on: [push]
+    
+jobs:
+  build:
+    name: Build Android, Linux & Windows
+    runs-on: ubuntu-latest
+    steps:
+      # Setup Java environment in order to build the Android app.
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      
+      # setup linux environment
+      - run: |
+        sudo apt-get update -y
+        sudo apt-get install -y ninja-build libgtk-3-dev
+      
+      # Setup the flutter environment.
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+          # flutter-version: '1.12.x' # you can also specify exact version of flutter
+      
+      # Get flutter dependencies.
+      - run: flutter pub get
+      
+      # Check for any formatting issues in the code.
+      - run: flutter format --set-exit-if-changed .
+      
+      # Statically analyze the Dart code for any errors.
+      - run: flutter analyze .
+      
+      # Run widget tests for our flutter project.
+      #- run: flutter test
+      
+      # Build apk.
+      - run: flutter build apk
+      # Build linux
+      - run: |
+        flutter config --enable-linux-desktop
+        flutter build linux
+      # Build windows
+      - run: |
+        flutter config --enable-windows-desktop
+        flutter build windows
+      
+      # Upload generated binaries
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-linux
+          path: build/linux/release/bundle/.
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-windows
+          path: build/windows/runner/release/
