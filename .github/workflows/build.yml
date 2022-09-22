@@ -1,5 +1,4 @@
 name: build
-
 on: [push]
     
 jobs:
@@ -15,8 +14,8 @@ jobs:
       
       # setup linux environment
       - run: |
-        sudo apt-get update -y
-        sudo apt-get install -y ninja-build libgtk-3-dev
+          sudo apt-get update -y
+          sudo apt-get install -y ninja-build libgtk-3-dev
       
       # Setup the flutter environment.
       - uses: subosito/flutter-action@v1
@@ -40,12 +39,12 @@ jobs:
       - run: flutter build apk
       # Build linux
       - run: |
-        flutter config --enable-linux-desktop
-        flutter build linux
+          flutter config --enable-linux-desktop
+          flutter build linux
       # Build windows
       - run: |
-        flutter config --enable-windows-desktop
-        flutter build windows
+          flutter config --enable-windows-desktop
+          flutter build windows
       
       # Upload generated binaries
       - uses: actions/upload-artifact@v3
