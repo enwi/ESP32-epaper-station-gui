@@ -1,3 +1,4 @@
+[![Discord](https://img.shields.io/discord/781219798931603527.svg?label=enwi&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/YxVyJWX62h)
 ![build state](https://github.com/enwi/ESP32-epaper-station-gui/actions/workflows/build.yml/badge.svg?branch=main)
 
 # ESP32-epaper-station-gui
