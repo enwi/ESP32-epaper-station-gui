@@ -1,4 +1,4 @@
-![build state](https://github.com/enwi/ESP32-epaper-station-gui/actions/workflows/build.yml/badge.svg)
+![build state](https://github.com/enwi/ESP32-epaper-station-gui/actions/workflows/build.yml/badge.svg?branch=main)
 
 # ESP32-epaper-station-gui
 GUI for [ESP32-epaper-station](https://github.com/jjwbruijn/ESP32-epaper-station)
