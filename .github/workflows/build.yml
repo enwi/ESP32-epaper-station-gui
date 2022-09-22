@@ -47,6 +47,9 @@ jobs:
         run: |
           flutter config --enable-linux-desktop
           flutter build linux
+          ls build/linux
+          ls build/linux/release
+          ls build/linux/debug
       
       # Upload generated binaries
       - name: Upload android binaries
